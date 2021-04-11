@@ -14,12 +14,15 @@ export class CharacterService {
     return this.instance;
   }
 
-  async getAllCharacters(page: number): Promise<CharacterResults> {
+  async fetchCharacters(
+    page: number,
+    nameSearch: string = ''
+  ): Promise<CharacterResults> {
     const response = await fetch(this.graphqlEndpoint, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        query: this.getCharactersQuery(page),
+        query: this.getCharactersQuery(page, nameSearch),
       }),
     });
 
@@ -28,10 +31,10 @@ export class CharacterService {
     return charactersResponse.data.characters;
   }
 
-  private getCharactersQuery(page: number): string {
+  private getCharactersQuery(page: number, nameSearch: string): string {
     return `
       {
-        characters(page: ${page}) {
+        characters(page: ${page}, filter: { name: "${nameSearch}" }) {
           info {
             pages
             next

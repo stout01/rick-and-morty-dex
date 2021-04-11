@@ -5,6 +5,7 @@ import { Character } from '../models/character';
 import { CharacterResults } from '../models/character-results';
 import { CharacterService } from '../services/character-service';
 import CharacterList from './character-list';
+import CharacterSearch from './character-search';
 import PageControls from './page-controls';
 
 type CharactersProps = {
@@ -25,12 +26,13 @@ const useStyles = makeStyles(() =>
 );
 
 export default function CharactersPage({
-  favoriteCharacters,
+  favoriteCharacters = {},
   setFavoriteCharacters,
 }: CharactersProps) {
   const classes = useStyles();
 
   const [characterResults, setCharacterResults] = useState<CharacterResults>();
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const [pageNumber, setPageNumber] = useState<number>(1);
 
   function useQuery() {
@@ -41,28 +43,28 @@ export default function CharactersPage({
   useEffect(() => {
     const page = query.get('page') || '';
     const parsedPageNumber = Number.parseInt(page);
+
     if (parsedPageNumber) {
-      fetchCharacter(parsedPageNumber);
-    } else {
-      fetchCharacter();
+      setPageNumber(parsedPageNumber);
     }
-  }, []);
+  }, [query]);
 
-  if (!favoriteCharacters) {
-    return null;
-  }
+  useEffect(() => {
+    async function fetchCharacter() {
+      const characterService = CharacterService.getInstance();
 
-  async function fetchCharacter(page: number = 1) {
-    const characterService = CharacterService.getInstance();
+      const charactersResponse = await characterService.fetchCharacters(
+        pageNumber,
+        searchTerm
+      );
 
-    const charactersResponse = await characterService.getAllCharacters(page);
-
-    setCharacterResults(charactersResponse);
-    setPageNumber(page);
-  }
+      setCharacterResults(charactersResponse);
+    }
+    fetchCharacter();
+  }, [pageNumber, searchTerm]);
 
   const handlePageChange = (value: number) => {
-    fetchCharacter(value);
+    setPageNumber(value);
   };
 
   const toggleFavorite = async (value: number, character: Character) => {
@@ -78,8 +80,14 @@ export default function CharactersPage({
     }
   };
 
+  const searchChanged = (searchValue: string) => {
+    setPageNumber(1);
+    setSearchTerm(searchValue);
+  };
+
   return (
     <div className={classes.root}>
+      <CharacterSearch onChange={searchChanged}></CharacterSearch>
       <CharacterList
         characterResults={characterResults}
         favoriteCharacters={favoriteCharacters}
