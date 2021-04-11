@@ -38,6 +38,7 @@ export class CharacterService {
             prev
           }
           results {
+            id
             name
             status
             species

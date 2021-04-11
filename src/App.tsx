@@ -16,11 +16,14 @@ function App() {
     }
 
     fetchCharacter();
-  });
+  }, []);
 
   const characterList = () =>
     characters?.map((character) => (
-      <CharacterItemComponent character={character}></CharacterItemComponent>
+      <CharacterItemComponent
+        key={character.id}
+        character={character}
+      ></CharacterItemComponent>
     ));
 
   return <div className="App">{characterList()}</div>;
