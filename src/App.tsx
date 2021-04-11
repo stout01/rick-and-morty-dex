@@ -1,32 +1,33 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { CharacterItemComponent } from './components/character-item';
-import { Character } from './models/character';
+import CharacterList from './components/character-list';
+import AppMenuBar from './components/app-menu-bar';
+import { CharacterResults } from './models/character-results';
 import { CharacterService } from './services/character-service';
 
 function App() {
-  const [characters, setCharacters] = useState<Array<Character>>();
+  const [characterResults, setCharacterResults] = useState<CharacterResults>();
+
   useEffect(() => {
     async function fetchCharacter() {
       const characterService = CharacterService.getInstance();
 
       const charactersResponse = await characterService.getAllCharacters(1);
 
-      setCharacters(charactersResponse.results);
+      setCharacterResults(charactersResponse);
     }
 
     fetchCharacter();
   }, []);
 
-  const characterList = () =>
-    characters?.map((character) => (
-      <CharacterItemComponent
-        key={character.id}
-        character={character}
-      ></CharacterItemComponent>
-    ));
-
-  return <div className="App">{characterList()}</div>;
+  return (
+    <div>
+      <AppMenuBar></AppMenuBar>
+      <div className="App">
+        <CharacterList characterResults={characterResults}></CharacterList>
+      </div>
+    </div>
+  );
 }
 
 export default App;
