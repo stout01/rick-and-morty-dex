@@ -1,8 +1,8 @@
 .App {
   color: white;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   font-size: calc(10px + 2vmin);
-  justify-content: space-around;
+  grid-gap: 1rem;
+  grid-template-columns: auto auto auto auto;
   text-align: center;
 }

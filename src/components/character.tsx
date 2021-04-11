@@ -1,4 +1,5 @@
 import { Character } from '../models/character';
+import './character.css';
 
 type CharacterComponentProps = {
   character?: Character;
@@ -10,7 +11,7 @@ export const CharacterComponent = ({ character }: CharacterComponentProps) => {
   }
 
   return (
-    <div>
+    <div className="character">
       <img src={character.image} alt="Profile"></img>
       <div>Name: {character.name}</div>
       <div>Status: {character.status}</div>
