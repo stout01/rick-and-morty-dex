@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { CharacterComponent } from './components/character';
+import { CharacterItemComponent } from './components/character-item';
 import { Character } from './models/character';
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
 
   const characterList = () =>
     characters?.map((character) => (
-      <CharacterComponent character={character}></CharacterComponent>
+      <CharacterItemComponent character={character}></CharacterItemComponent>
     ));
 
   return <div className="App">{characterList()}</div>;

@@ -1,17 +1,19 @@
 import { Character } from '../models/character';
-import './character.css';
+import './character-item.css';
 
 type CharacterComponentProps = {
   character?: Character;
 };
 
-export const CharacterComponent = ({ character }: CharacterComponentProps) => {
+export const CharacterItemComponent = ({
+  character,
+}: CharacterComponentProps) => {
   if (!character) {
     return null;
   }
 
   return (
-    <div className="character">
+    <div className="character-item">
       <img src={character.image} alt="Profile"></img>
       <div>Name: {character.name}</div>
       <div>Status: {character.status}</div>
