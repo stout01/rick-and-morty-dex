@@ -1,3 +1,4 @@
+import { createStyles, makeStyles } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Character } from '../models/character';
@@ -11,10 +12,24 @@ type CharactersProps = {
   setFavoriteCharacters: (characters: { [key: number]: Character }) => void;
 };
 
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    pagination: {
+      alignSelf: 'center',
+    },
+  })
+);
+
 export default function CharactersPage({
   favoriteCharacters,
   setFavoriteCharacters,
 }: CharactersProps) {
+  const classes = useStyles();
+
   const [characterResults, setCharacterResults] = useState<CharacterResults>();
   const [pageNumber, setPageNumber] = useState<number>(1);
 
@@ -64,21 +79,20 @@ export default function CharactersPage({
   };
 
   return (
-    <div>
-      <div className="App">
-        <CharacterList
-          characterResults={characterResults}
-          favoriteCharacters={favoriteCharacters}
-          setFavorite={(value: number, character: Character) =>
-            toggleFavorite(value, character)
-          }
-        ></CharacterList>
-        <PageControls
-          onChange={handlePageChange}
-          pageCount={characterResults?.info.pages}
-          currentPage={pageNumber}
-        ></PageControls>
-      </div>
+    <div className={classes.root}>
+      <CharacterList
+        characterResults={characterResults}
+        favoriteCharacters={favoriteCharacters}
+        setFavorite={(value: number, character: Character) =>
+          toggleFavorite(value, character)
+        }
+      ></CharacterList>
+      <PageControls
+        className={classes.pagination}
+        onChange={handlePageChange}
+        pageCount={characterResults?.info.pages}
+        currentPage={pageNumber}
+      ></PageControls>
     </div>
   );
 }
