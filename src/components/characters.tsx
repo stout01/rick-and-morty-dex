@@ -1,11 +1,10 @@
-import { PaginationItem } from '@material-ui/lab';
-import Pagination from '@material-ui/lab/Pagination';
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Character } from '../models/character';
 import { CharacterResults } from '../models/character-results';
 import { CharacterService } from '../services/character-service';
 import CharacterList from './character-list';
+import PageControls from './page-controls';
 
 type CharactersProps = {
   favoriteCharacters?: { [key: number]: Character };
@@ -47,10 +46,7 @@ export default function Characters({
     setPageNumber(page);
   }
 
-  const handlePageChange = (
-    _event: React.ChangeEvent<unknown>,
-    value: number
-  ) => {
+  const handlePageChange = (value: number) => {
     fetchCharacter(value);
   };
 
@@ -77,20 +73,11 @@ export default function Characters({
             toggleFavorite(value, character)
           }
         ></CharacterList>
-        <Pagination
-          color="primary"
-          variant="outlined"
-          count={characterResults?.info.pages}
+        <PageControls
           onChange={handlePageChange}
-          page={pageNumber}
-          renderItem={(item) => (
-            <PaginationItem
-              component={Link}
-              to={`/characters${item.page === 1 ? '' : `?page=${item.page}`}`}
-              {...item}
-            />
-          )}
-        />
+          pageCount={characterResults?.info.pages}
+          currentPage={pageNumber}
+        ></PageControls>
       </div>
     </div>
   );
