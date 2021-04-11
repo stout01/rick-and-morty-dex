@@ -7,14 +7,34 @@ function App() {
   const [characters, setCharacters] = useState<Array<Character>>();
   useEffect(() => {
     async function fetchCharacter() {
-      const response = await fetch(
-        'https://rickandmortyapi.com/api/character',
-        { method: 'GET' }
-      );
+      const response = await fetch('https://rickandmortyapi.com/graphql', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: `
+              {
+                characters(page: 1) {
+                  info {
+                    pages
+                    next
+                    prev
+                  }
+                  results {
+                    name
+                    status
+                    species
+                    gender
+                    image
+                  }
+                }
+              }
+            `,
+        }),
+      });
 
       const charactersResponse = await response.json();
 
-      setCharacters(charactersResponse.results);
+      setCharacters(charactersResponse.data.characters.results);
     }
 
     fetchCharacter();
