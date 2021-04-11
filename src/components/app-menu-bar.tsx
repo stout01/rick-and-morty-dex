@@ -1,13 +1,14 @@
 import {
   AppBar,
+  Button,
   createStyles,
   IconButton,
   makeStyles,
   Theme,
   Toolbar,
-  Typography,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,12 +37,12 @@ export default function AppMenuBar() {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" className={classes.title}>
+        <Button color="inherit" component={Link} to="/characters">
           Characters
-        </Typography>
-        <Typography variant="h6" className={classes.title}>
+        </Button>
+        <Button color="inherit" component={Link} to="/recommended-episodes">
           Recommended Episodes
-        </Typography>
+        </Button>
       </Toolbar>
     </AppBar>
   );
