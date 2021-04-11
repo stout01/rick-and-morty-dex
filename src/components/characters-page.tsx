@@ -11,7 +11,7 @@ type CharactersProps = {
   setFavoriteCharacters: (characters: { [key: number]: Character }) => void;
 };
 
-export default function Characters({
+export default function CharactersPage({
   favoriteCharacters,
   setFavoriteCharacters,
 }: CharactersProps) {

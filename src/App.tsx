@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import AppMenuBar from './components/app-menu-bar';
-import Characters from './components/characters';
+import CharactersPage from './components/characters-page';
 import RecommendedEpisodes from './components/recommended-episodes';
 import { Character } from './models/character';
 import { Episode } from './models/episode';
@@ -38,7 +38,7 @@ function App() {
           <RecommendedEpisodes episodes={recommendedEpisodes} />
         </Route>
         <Route path="/characters">
-          <Characters
+          <CharactersPage
             favoriteCharacters={favoriteCharacters}
             setFavoriteCharacters={setFavoriteCharacters}
           />
