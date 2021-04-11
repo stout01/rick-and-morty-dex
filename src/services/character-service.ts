@@ -43,7 +43,12 @@ export class CharacterService {
             status
             species
             gender
-            image
+            image,
+            episode {
+              id,
+              name,
+              episode
+            }
           }
         }
       }

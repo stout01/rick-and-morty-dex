@@ -1,3 +1,4 @@
+import { Episode } from './episode';
 import { Link } from './link';
 
 export interface Character {
@@ -10,7 +11,5 @@ export interface Character {
   origin: Link;
   location: Link;
   image: string;
-  episode: Array<string>;
-  url: string;
-  created: string;
+  episode: Array<Episode>;
 }
