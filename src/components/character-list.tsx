@@ -16,6 +16,7 @@ const useStyles = makeStyles(() =>
       listStyle: 'none',
       marginLeft: '1rem',
       marginRight: '1rem',
+      textAlign: 'initial',
     },
     icon: {
       color: 'rgba(255, 255, 255, 0.54)',
@@ -44,7 +45,7 @@ export default function CharacterList({
           <img src={character.image} alt={character.name} />
           <GridListTileBar
             title={character.name}
-            subtitle={<span>Status: {character.status}</span>}
+            subtitle={<span>Origin: {character.origin.name}</span>}
             actionIcon={
               <IconButton
                 aria-label={`info about ${character.name}`}

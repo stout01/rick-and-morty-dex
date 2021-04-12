@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
-      // maxWidth: 360,
       textAlign: 'center',
       backgroundColor: theme.palette.background.paper,
     },

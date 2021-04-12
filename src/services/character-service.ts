@@ -47,6 +47,9 @@ export class CharacterService {
             species
             gender
             image,
+            origin {
+              name
+            }
             episode {
               id,
               name,
