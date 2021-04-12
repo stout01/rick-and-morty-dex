@@ -1,3 +1,4 @@
+import { Container } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -15,7 +16,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: '100%',
-      maxWidth: 360,
+      // maxWidth: 360,
+      textAlign: 'center',
       backgroundColor: theme.palette.background.paper,
     },
   })
@@ -27,27 +29,32 @@ export default function RecommendedEpisodes({
   const classes = useStyles();
 
   return (
-    <List className={classes.root}>
-      {episodes?.map((episode) => (
-        <ListItem key={episode.id}>
-          <ListItemAvatar>
-            <Avatar>
-              <ImageIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItem
-            button
-            component="a"
-            href={`https://rickandmorty.fandom.com/wiki/${episode.name.replaceAll(
-              ' ',
-              '_'
-            )}`}
-            target="_blank"
-          >
-            <ListItemText primary={episode.episode} secondary={episode.name} />
+    <Container>
+      <List className={classes.root}>
+        {episodes?.map((episode) => (
+          <ListItem key={episode.id}>
+            <ListItemAvatar>
+              <Avatar>
+                <ImageIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItem
+              button
+              component="a"
+              href={`https://rickandmorty.fandom.com/wiki/${episode.name.replaceAll(
+                ' ',
+                '_'
+              )}`}
+              target="_blank"
+            >
+              <ListItemText
+                primary={episode.episode}
+                secondary={episode.name}
+              />
+            </ListItem>
           </ListItem>
-        </ListItem>
-      ))}
-    </List>
+        ))}
+      </List>
+    </Container>
   );
 }
