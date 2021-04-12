@@ -1,4 +1,4 @@
-import { createStyles, makeStyles } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Character } from '../models/character';
@@ -13,14 +13,18 @@ type CharactersProps = {
   setFavoriteCharacters: (characters: { [key: number]: Character }) => void;
 };
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex',
-      flexDirection: 'column',
+      textAlign: 'center',
+      width: '100%',
+      '& > *': {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+      },
     },
     pagination: {
-      alignSelf: 'center',
+      display: 'inline-flex',
     },
   })
 );

@@ -1,7 +1,0 @@
-.App {
-  color: white;
-  font-size: calc(10px + 2vmin);
-  grid-gap: 1rem;
-  grid-template-columns: auto auto auto auto;
-  text-align: center;
-}

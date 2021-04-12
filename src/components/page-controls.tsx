@@ -30,7 +30,6 @@ export default function PageControls({
     <Pagination
       className={`${classes.pagination} ${className}`}
       color="primary"
-      variant="outlined"
       count={pageCount}
       onChange={(_, value: number) => onChange(value)}
       page={currentPage}

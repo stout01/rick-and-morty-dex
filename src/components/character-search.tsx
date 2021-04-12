@@ -1,4 +1,6 @@
+import { InputAdornment } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
+import { Search } from '@material-ui/icons';
 import { useEffect, useState } from 'react';
 import useDebounce from '../hooks/use-debounce';
 
@@ -15,12 +17,16 @@ export default function CharacterSearch({ onChange }: CharacterSearchProps) {
   }, [debouncedSearchTerm, onChange]);
 
   return (
-    <div style={{ width: 300 }}>
-      <TextField
-        id="standard-basic"
-        label="Standard"
-        onChange={(event) => setSearchTerm(event.target.value)}
-      />
-    </div>
+    <TextField
+      label="Search"
+      onChange={(event) => setSearchTerm(event.target.value)}
+      InputProps={{
+        startAdornment: (
+          <InputAdornment position="start">
+            <Search />
+          </InputAdornment>
+        ),
+      }}
+    />
   );
 }

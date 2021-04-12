@@ -5,7 +5,6 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import './App.css';
 import AppMenuBar from './components/app-menu-bar';
 import CharactersPage from './components/characters-page';
 import RecommendedEpisodes from './components/recommended-episodes';
