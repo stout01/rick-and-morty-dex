@@ -39,7 +39,6 @@ export default function CharacterList({
 
   return (
     <div className={classes.root}>
-      {/* <GridList cellHeight={'auto'} cols={4}> */}
       {characterResults?.results.map((character) => (
         <GridListTile key={character.id}>
           <img src={character.image} alt={character.name} />
@@ -62,7 +61,6 @@ export default function CharacterList({
           />
         </GridListTile>
       ))}
-      {/* </GridList> */}
     </div>
   );
 }
