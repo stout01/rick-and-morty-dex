@@ -26,7 +26,7 @@ const useStyles = makeStyles(() =>
 
 type CharacterListProps = {
   characterResults?: CharacterResults;
-  favoriteCharacters: { [key: number]: Character };
+  favoriteCharacters: { [id: number]: Character };
   setFavorite: (id: number, character: Character) => void;
 };
 
@@ -52,9 +52,9 @@ export default function CharacterList({
                 onClick={() => toggleFavorite(character.id, character)}
               >
                 {favoriteCharacters[character.id] ? (
-                  <Favorite />
+                  <Favorite data-testid="FavoriteIcon" />
                 ) : (
-                  <FavoriteBorder />
+                  <FavoriteBorder data-testid="FavoriteBorderIcon" />
                 )}
               </IconButton>
             }
