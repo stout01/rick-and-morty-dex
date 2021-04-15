@@ -93,7 +93,7 @@ export default function CharactersPage({
     <div className={classes.root}>
       <CharacterSearch onChange={searchChanged}></CharacterSearch>
       <CharacterList
-        characterResults={characterResults}
+        characters={characterResults?.results}
         favoriteCharacters={favoriteCharacters}
         setFavorite={(value: number, character: Character) =>
           toggleFavorite(value, character)

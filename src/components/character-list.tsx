@@ -4,7 +4,6 @@ import IconButton from '@material-ui/core/IconButton';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import { Favorite, FavoriteBorder } from '@material-ui/icons';
 import { Character } from '../models/character';
-import { CharacterResults } from '../models/character-results';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -25,13 +24,13 @@ const useStyles = makeStyles(() =>
 );
 
 type CharacterListProps = {
-  characterResults?: CharacterResults;
+  characters?: Array<Character>;
   favoriteCharacters: { [id: number]: Character };
   setFavorite: (id: number, character: Character) => void;
 };
 
 export default function CharacterList({
-  characterResults,
+  characters,
   favoriteCharacters,
   setFavorite: toggleFavorite,
 }: CharacterListProps) {
@@ -39,7 +38,7 @@ export default function CharacterList({
 
   return (
     <div className={classes.root}>
-      {characterResults?.results.map((character) => (
+      {characters?.map((character) => (
         <GridListTile key={character.id}>
           <img src={character.image} alt={character.name} />
           <GridListTileBar

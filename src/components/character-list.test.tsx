@@ -1,8 +1,6 @@
-import { Favorite } from '@material-ui/icons';
 import { getByTestId, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Character } from '../models/character';
-import { CharacterResults } from '../models/character-results';
 import CharacterList from './character-list';
 
 describe('CharacterList', () => {
@@ -27,12 +25,12 @@ describe('CharacterList', () => {
   };
 
   it('should render character list', () => {
-    const characterResults = { results: [character] };
+    const characters = [character];
     const favoriteCharacters = {};
     const setFavorite = () => {};
     render(
       <CharacterList
-        characterResults={characterResults as CharacterResults}
+        characters={characters}
         favoriteCharacters={favoriteCharacters}
         setFavorite={setFavorite}
       ></CharacterList>
@@ -42,12 +40,12 @@ describe('CharacterList', () => {
   });
 
   it('should set favorite character', () => {
-    const characterResults = { results: [character] };
+    const characters = [character];
     const favoriteCharacters = {};
     const setFavorite = jest.fn();
     render(
       <CharacterList
-        characterResults={characterResults as CharacterResults}
+        characters={characters}
         favoriteCharacters={favoriteCharacters}
         setFavorite={setFavorite}
       ></CharacterList>
@@ -59,12 +57,12 @@ describe('CharacterList', () => {
   });
 
   it('should set favorite icon', () => {
-    const characterResults = { results: [character] };
+    const characters = [character];
     const favoriteCharacters = { [character.id]: character };
     const setFavorite = jest.fn();
     render(
       <CharacterList
-        characterResults={characterResults as CharacterResults}
+        characters={characters}
         favoriteCharacters={favoriteCharacters}
         setFavorite={setFavorite}
       ></CharacterList>
@@ -80,12 +78,12 @@ describe('CharacterList', () => {
   });
 
   it('should set favorite border icon', () => {
-    const characterResults = { results: [character] };
+    const characters = [character];
     const favoriteCharacters = {};
     const setFavorite = jest.fn();
     render(
       <CharacterList
-        characterResults={characterResults as CharacterResults}
+        characters={characters}
         favoriteCharacters={favoriteCharacters}
         setFavorite={setFavorite}
       ></CharacterList>
