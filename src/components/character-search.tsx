@@ -2,7 +2,7 @@ import { InputAdornment } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { Search } from '@material-ui/icons';
 import { useEffect, useState } from 'react';
-import useDebounce from '../hooks/use-debounce';
+import { useDebounce } from '../hooks/use-debounce';
 
 type CharacterSearchProps = {
   onChange: (text: string) => void;
